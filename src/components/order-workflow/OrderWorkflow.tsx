@@ -29,11 +29,16 @@ import {
   type FulfillmentStatus,
 } from "@/lib/order-storage";
 import { openWhatsAppOrder } from "@/lib/whatsapp";
+import { SHIPPING } from "@/lib/shop";
 
 const PAYMENT_OPTIONS: Array<{ id: PaymentMethod; label: string; description: string }> = [
-  { id: "bit", label: "Bit", description: "Transfer to business number: 050-1234567" },
-  { id: "paybox", label: "PayBox", description: "Transfer to business number: +972-50-1234567" },
+  { id: "bit", label: "Bit", description: "Transfer to business number: 0523972662" },
+  { id: "paybox", label: "PayBox", description: "WhatsApp transfer to: 0523972662" },
 ];
+
+const COUPON_CODES: Record<string, number> = {
+  "new10": 10, // 10% discount
+};
 
 const paymentStatusOptions: PaymentStatus[] = ["pending", "paid"];
 const fulfillmentStatusOptions: FulfillmentStatus[] = ["processing", "shipped"];
@@ -64,6 +69,8 @@ export function OrderWorkflow({ mode = "checkout" }: OrderWorkflowProps) {
 
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("bit");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [couponCode, setCouponCode] = useState("");
+  const [couponError, setCouponError] = useState("");
 
   const [orders, setOrders] = useState<OrderRecord[]>([]);
   const [search, setSearch] = useState("");
@@ -72,8 +79,26 @@ export function OrderWorkflow({ mode = "checkout" }: OrderWorkflowProps) {
   const [printOrder, setPrintOrder] = useState<OrderRecord | null>(null);
 
   const subtotal = items.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const discountPercentage = couponCode && COUPON_CODES[couponCode.toLowerCase()] ? COUPON_CODES[couponCode.toLowerCase()] : 0;
+  const discountAmount = (subtotal * discountPercentage) / 100;
+  const totalAfterDiscount = subtotal - discountAmount;
+  const total = totalAfterDiscount + SHIPPING;
 
   const refreshOrders = () => setOrders(getStoredOrders());
+
+  const applyCoupon = () => {
+    const code = couponCode.trim().toLowerCase();
+    if (!code) {
+      setCouponError("");
+      return;
+    }
+    if (COUPON_CODES[code]) {
+      setCouponError("");
+      toast.success(`Coupon applied! ${discountPercentage}% discount added.`);
+    } else {
+      setCouponError("Invalid coupon code");
+    }
+  };
 
   useEffect(() => {
     refreshOrders();
@@ -145,7 +170,7 @@ export function OrderWorkflow({ mode = "checkout" }: OrderWorkflowProps) {
         qty: item.qty,
         greeting: item.greeting || "",
       })),
-      total: subtotal,
+      total: Math.round(total * 100) / 100,
     };
 
     saveOrder(order);
@@ -236,7 +261,7 @@ export function OrderWorkflow({ mode = "checkout" }: OrderWorkflowProps) {
                   onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     handleChange("phone", event.target.value)
                   }
-                  placeholder="050-1234567"
+                  placeholder="0523972662"
                   className="h-11 rounded-xl border-stone-300 bg-white"
                   required
                 />
@@ -339,15 +364,57 @@ export function OrderWorkflow({ mode = "checkout" }: OrderWorkflowProps) {
               ))}
             </div>
 
+            <div className="space-y-3 rounded-xl border border-stone-200 bg-white p-3">
+              <Label htmlFor="coupon" className="text-sm font-medium text-stone-700">
+                Coupon Code
+              </Label>
+              <div className="flex gap-2">
+                <Input
+                  id="coupon"
+                  value={couponCode}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    setCouponCode(e.target.value);
+                    setCouponError("");
+                  }}
+                  placeholder="Enter coupon code"
+                  className="h-9 rounded-lg border-stone-300 bg-white text-sm"
+                />
+                <Button
+                  type="button"
+                  onClick={applyCoupon}
+                  className="rounded-lg bg-stone-900 text-white hover:bg-stone-700 text-sm"
+                  size="sm"
+                >
+                  Apply
+                </Button>
+              </div>
+              {couponError && <p className="text-xs text-red-600">{couponError}</p>}
+              {couponCode && COUPON_CODES[couponCode.toLowerCase()] && (
+                <p className="text-xs text-green-600">Coupon applied! {COUPON_CODES[couponCode.toLowerCase()]}% discount</p>
+              )}
+            </div>
+
             <div className="border-t border-stone-200 pt-4 text-sm text-stone-700">
               <div className="flex items-center justify-between">
                 <span>Subtotal</span>
                 <span>{subtotal} NIS</span>
               </div>
 
-              <div className="mt-3 flex items-center justify-between font-serif text-2xl text-stone-900">
+              {discountAmount > 0 && (
+                <div className="mt-2 flex items-center justify-between text-green-600">
+                  <span>Discount ({discountPercentage}%)</span>
+                  <span>-{discountAmount.toFixed(2)} NIS</span>
+                </div>
+              )}
+
+              <div className="mt-2 flex items-center justify-between">
+                <span>Shipping</span>
+                <span>{SHIPPING} NIS</span>
+              </div>
+
+              <div className="mt-3 border-t border-stone-200 pt-3 flex items-center justify-between font-serif text-2xl text-stone-900">
                 <span>Total</span>
-                <span>{subtotal} NIS</span>
+                <span>{total.toFixed(2)} NIS</span>
               </div>
             </div>
 

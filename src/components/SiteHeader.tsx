@@ -8,7 +8,7 @@ import { SHIPPING, MOCKUP_NOTICE } from "@/lib/shop";
 export function SiteHeader() {
   const { count, open, setOpen, items, setQty, subtotal } = useCart();
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-border/40 bg-background/70 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link to="/" className="font-serif text-xl tracking-wide text-primary">שלוש נקישות אור</Link>
         <nav className="flex items-center gap-6 text-sm">
@@ -60,9 +60,27 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-border/60 py-10 text-center text-sm text-muted-foreground">
-      <p className="font-serif text-base text-primary">שלוש נקישות אור · בתאל כרמונה</p>
-      <p className="mt-1">משלוח בדואר רשום לכל הארץ · תשלום בביט · פייבוקס</p>
+    <footer className="mt-24 border-t border-border/40 bg-secondary/20 py-16 text-center">
+      <div className="mx-auto max-w-6xl px-6 space-y-8">
+        <div className="space-y-2">
+          <p className="font-serif text-lg text-primary">שלוש נקישות אור</p>
+          <p className="text-sm text-muted-foreground">בתאל כרמונה</p>
+        </div>
+        
+        <div className="flex flex-col gap-4 text-sm text-muted-foreground md:flex-row md:justify-center md:gap-8">
+          <span>משלוח בדואר רשום לכל הארץ</span>
+          <span className="hidden md:inline">·</span>
+          <span>תשלום בביט · פייבוקס</span>
+          <span className="hidden md:inline">·</span>
+          <span>WhatsApp: 0523972662</span>
+        </div>
+
+        <div className="border-t border-border/40 pt-8">
+          <p className="text-xs text-muted-foreground/60">
+            © {new Date().getFullYear()} שלוש נקישות אור. כל הזכויות שמורות.
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }

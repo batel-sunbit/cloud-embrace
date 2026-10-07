@@ -15,6 +15,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as NewsletterAdminRouteImport } from './routes/newsletter-admin'
 import { Route as OrdersAdminRouteImport } from './routes/orders-admin'
 import { Route as PodcastsRouteImport } from './routes/podcasts'
 import { Route as PurchaseRouteImport } from './routes/purchase'
@@ -50,6 +51,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsletterAdminRoute = NewsletterAdminRouteImport.update({
+  id: '/newsletter-admin',
+  path: '/newsletter-admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OrdersAdminRoute = OrdersAdminRouteImport.update({
   id: '/orders-admin',
   path: '/orders-admin',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/newsletter-admin': typeof NewsletterAdminRoute
   '/orders-admin': typeof OrdersAdminRoute
   '/podcasts': typeof PodcastsRoute
   '/purchase': typeof PurchaseRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/newsletter-admin': typeof NewsletterAdminRoute
   '/orders-admin': typeof OrdersAdminRoute
   '/podcasts': typeof PodcastsRoute
   '/purchase': typeof PurchaseRoute
@@ -108,6 +116,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/newsletter-admin': typeof NewsletterAdminRoute
   '/orders-admin': typeof OrdersAdminRoute
   '/podcasts': typeof PodcastsRoute
   '/purchase': typeof PurchaseRoute
@@ -122,6 +131,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/checkout'
     | '/contact'
+    | '/newsletter-admin'
     | '/orders-admin'
     | '/podcasts'
     | '/purchase'
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/checkout'
     | '/contact'
+    | '/newsletter-admin'
     | '/orders-admin'
     | '/podcasts'
     | '/purchase'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/checkout'
     | '/contact'
+    | '/newsletter-admin'
     | '/orders-admin'
     | '/podcasts'
     | '/purchase'
@@ -161,6 +173,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
+  NewsletterAdminRoute: typeof NewsletterAdminRoute
   OrdersAdminRoute: typeof OrdersAdminRoute
   PodcastsRoute: typeof PodcastsRoute
   PurchaseRoute: typeof PurchaseRoute
@@ -209,6 +222,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/newsletter-admin': {
+      id: '/newsletter-admin'
+      path: '/newsletter-admin'
+      fullPath: '/newsletter-admin'
+      preLoaderRoute: typeof NewsletterAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/orders-admin': {
@@ -267,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
+  NewsletterAdminRoute: NewsletterAdminRoute,
   OrdersAdminRoute: OrdersAdminRoute,
   PodcastsRoute: PodcastsRoute,
   PurchaseRoute: PurchaseRoute,

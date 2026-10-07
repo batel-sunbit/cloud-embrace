@@ -58,7 +58,7 @@ function Podcasts() {
             <Music className="h-8 w-8 flex-shrink-0 text-primary/60 mt-1" />
             <div>
               <h2 className="font-serif text-2xl text-primary">המוזיקה שלי</h2>
-              <p className="mt-2 text-muted-foreground text-sm">אתם מוזמנים להאזין למוזיקה המקורית שלי בספוטיפיי. חפשו את השם שלי, ותוכלו לצלול אל מלודיות שקטות שיוצאות מהלב.</p>
+              <p className="mt-2 text-muted-foreground text-sm">אתם מוזמנים להאזין למוזיקה המקורית שלי בספוטיפיי. חפשו את השם שלי, ותוכלו לצלול אל מלודיות שקטות שיוצאות מהלב</p>
             </div>
           </div>
 

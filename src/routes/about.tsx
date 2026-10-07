@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Branch } from "@/components/Branch";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import author from "@/assets/author.jpeg.asset.json";
 import kindness from "@/assets/kindness-poem.jpeg.asset.json";
 import yehonatan from "@/assets/yehonatan-poem.jpeg.asset.json";
@@ -29,43 +30,96 @@ const poems = [
 
 function About() {
   return (
-    <div className="mx-auto max-w-4xl px-6 py-16">
-      <section className="space-y-8 text-center">
+    <div className="mx-auto max-w-4xl px-6 py-16" dir="rtl">
+      <section className="space-y-8 text-center mb-16">
         <Branch className="mx-auto h-10 w-48 text-primary/60" />
         <h1 className="font-serif text-5xl text-primary">אודות</h1>
-        <div className="space-y-6 text-right leading-relaxed">
-          <p className="text-lg text-muted-foreground">
-            נעים להכיר, אני בתאל.
-          </p>
-          <p className="text-base text-muted-foreground">
-            אני מתגוררת בקריית טבעון יחד עם אור ושני הילדים שלנו. את המסע המקצועי שלי התחלתי בטכניון, שם סיימתי תואר ראשון במדעי המחשב בהצטיינות, ומאז אני עוסקת כמהנדסת תוכנה. אבל לצד הקוד והמערכות, הלב שלי תמיד פעם בעולמות של יצירה.
-          </p>
-          <p className="text-base text-muted-foreground">
-            המקום הזה הוא הבית של כל מה שאני יוצרת – מרחב שבו מילים, צלילים וסיפורים נפגשים. אני כותבת שירים, סיפורים וספרי ילדים, ויוצרת מוזיקה. בין אם מדובר בשורות שמתגבשות לספר או במנגינות שיוצאות לאור, כל יצירה היא עוד נקישה קטנה של אור.
-          </p>
-          <p className="text-base text-muted-foreground">
-            ספר הבכורה שלי, <span className="font-semibold text-primary">"שלוש נקישות אור"</span> (הוצאת קתרזיס, בעריכתם המדויקת והרגישה של יואב גלבוע ויקיר בן משה), הוא אסופת שירים שנכתבה בתוך הטירוף של היום-יום – בין קריירה, משפחה, אימהות והרגעים שבהם הפגיעות פוגשת את העולם.
-          </p>
-          <p className="text-base text-muted-foreground">
-            מוזמנים להאזין למוזיקה שלי בספוטיפיי, לצלול אל פודקאסט סיפורי הילדים <span className="font-semibold text-primary">"אמא בתאל מספרת"</span>, או ליצור איתי קשר דרך עמוד <span className="font-semibold text-primary">נשארים בקשר</span>. 🤍
-          </p>
-        </div>
       </section>
 
-      <section className="mt-24 space-y-6 text-center">
-        <img src={author.url} alt="בתאל כרמונה" width={768} height={1145} className="mx-auto w-full max-w-xs rounded-lg shadow-[var(--shadow-soft)]" />
+      <Tabs defaultValue="book" className="w-full">
+        <TabsList className="grid w-full grid-cols-2 mb-12">
+          <TabsTrigger value="book" className="text-base">על הספר</TabsTrigger>
+          <TabsTrigger value="author" className="text-base">על בתאל</TabsTrigger>
+        </TabsList>
+
+        {/* Tab 1: About the Book */}
+        <TabsContent value="book" className="space-y-12">
+          <section className="space-y-6 text-right leading-relaxed">
+            <div className="space-y-4">
+              <h2 className="font-serif text-3xl text-primary">שלוש נקישות אור</h2>
+              <p className="text-base text-muted-foreground">ספר ביכורים של בתאל כרמונה</p>
+            </div>
+
+            <div className="space-y-6 bg-secondary/20 rounded-3xl p-8">
+              <p className="text-base text-muted-foreground leading-relaxed">
+                "שלוש נקישות אור" הן יותר מאשר כותרת – הן עיקרון שניצב בלבם של הספר. הן מגיעות כשאנחנו הכי פחות מצפים להן, לפעמַיִם מתוך חושך עמוק, לפעמַיִם בדמות יד קטנה שאוחזת בך בלילה, ולפעמַיִם ברגע שקט של זוגיות שנבנתה מחדש מחרוזי אהבה ובחילה.
+              </p>
+
+              <p className="text-base text-muted-foreground leading-relaxed">
+                בשנים האחרונות, בתוך כל הטירוף של החיים – בנייה של קריירה, משפחה, גידול ילדים וטלטול הזהות – כתבתי את המילים האלה. שירים על אהבה שהשתנתה ולא נשארה אותה אהבה, על אימהות שהיא בבת אחת שטח הפקר של פלא וחרדה, על המפגש העדין שבין ילדות המתייתמת, הורות המשתגעת, והתבגרות שמצפצפת בדלת.
+              </p>
+
+              <p className="text-base text-muted-foreground leading-relaxed">
+                הספר פורסם בהוצאת קתרזיס, בעריכתם המדויקת והרגישה של יואב גלבוע ויקיר בן משה.
+              </p>
+            </div>
+          </section>
+
+          <section className="space-y-12 mt-16">
+            <h3 className="text-center font-serif text-3xl text-primary">מתוך הספר</h3>
+            <div className="space-y-20">
+              {poems.map((p, i) => (
+                <article key={p.title} className={`mx-auto max-w-xl ${i % 2 ? "md:translate-x-8" : "md:-translate-x-8"}`}>
+                  <h4 className="sr-only">{p.title}</h4>
+                  <img 
+                    src={p.image} 
+                    alt={`השיר ${p.title} מתוך שלוש נקישות אור מאת בתאל כרמונה`} 
+                    loading="lazy" 
+                    width={768} 
+                    height={1145} 
+                    className="w-full rounded-lg shadow-[var(--shadow-soft)]" 
+                  />
+                </article>
+              ))}
+            </div>
+          </section>
+        </TabsContent>
+
+        {/* Tab 2: About Author */}
+        <TabsContent value="author" className="space-y-12">
+          <AuthorContent />
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+}
+
+function AuthorContent() {
+  return (
+    <>
+      <section className="space-y-6 text-right leading-relaxed">
+        <p className="text-lg text-muted-foreground">נעים להכיר, אני בתאל.</p>
+        <p className="text-base text-muted-foreground">
+          אני מתגוררת בקריית טבעון יחד עם אור ושני הילדים שלנו. את המסע המקצועי שלי התחלתי בטכניון, שם סיימתי תואר ראשון במדעי המחשב בהצטיינות, ומאז אני עוסקת כמהנדסת תוכנה. אבל לצד הקוד והמערכות, הלב שלי תמיד פעם בעולמות של יצירה.
+        </p>
+        <p className="text-base text-muted-foreground">
+          המקום הזה הוא הבית של כל מה שאני יוצרת – מרחב שבו מילים, צלילים וסיפורים נפגשים. אני כותבת שירים, סיפורים וספרי ילדים, ויוצרת מוזיקה. בין אם מדובר בשורות שמתגבשות לספר או במנגינות שיוצאות לאור, כל יצירה היא עוד נקישה קטנה של אור.
+        </p>
+        <p className="text-base text-muted-foreground">
+          מוזמנים להאזין למוזיקה שלי בספוטיפיי, לצלול אל פודקאסט סיפורי הילדים <span className="font-semibold text-primary">אמא בתאל מספרת</span>, או ליצור איתי קשר דרך עמוד <span className="font-semibold text-primary">נשארים בקשר</span>. 🤍
+        </p>
+      </section>
+
+      <section className="space-y-6 text-center pt-8">
+        <img 
+          src={author.url} 
+          alt="בתאל כרמונה" 
+          width={768} 
+          height={1145} 
+          className="mx-auto w-full max-w-xs rounded-lg shadow-[var(--shadow-soft)]" 
+        />
         <p className="text-sm tracking-[0.3em] text-muted-foreground">מהנדסת תוכנה · משוררת</p>
       </section>
-
-      <section className="mt-24 space-y-20">
-        <h2 className="text-center font-serif text-3xl text-primary">מתוך הספר</h2>
-        {poems.map((p, i) => (
-          <article key={p.title} className={`mx-auto max-w-xl ${i % 2 ? "md:translate-x-8" : "md:-translate-x-8"}`}>
-            <h3 className="sr-only">{p.title}</h3>
-            <img src={p.image} alt={`השיר ${p.title} מתוך שלוש נקישות אור מאת בתאל כרמונה`} loading="lazy" width={768} height={1145} className="w-full rounded-lg shadow-[var(--shadow-soft)]" />
-          </article>
-        ))}
-      </section>
-    </div>
+    </>
   );
 }

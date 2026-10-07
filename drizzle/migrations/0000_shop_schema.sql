@@ -20,7 +20,7 @@ create policy "public read" on public.products for select to anon, authenticated
 insert into public.products (slug,name,subtitle,description,includes,original_price,price,allows_greeting,images,sort_order) values
 ('grandma','מארז לסבתא','מתנה של חסד, לאישה שלימדה אותנו לאהוב','מארז עדין ומרגש לסבתא – הספר "שלוש נקישות אור" לצד מזכרות שירה שנבחרו במיוחד, כדי לומר לה תודה במילים שקשה לומר בקול.',array['ספר השירה "שלוש נקישות אור"','סימנייה','מגנט עם השיר "לגו"','תמונה ממוסגרת עם השיר "אלגוריתם של חסד"'],120,100,true,array['grandma','book','framed','magnet'],1),
 ('parent','מארז להורה','לאבא או לאמא – מיליונרים של הלב','מארז מלא אהבה להורה – הספר "שלוש נקישות אור" עם מזכרות שירה שמחבקות את הקשר שבין הורה לילד.',array['ספר השירה "שלוש נקישות אור"','סימנייה','מגנט עם השיר "יהונתן"','תמונה ממוסגרת עם השיר "מיליונרית של הלב"'],120,100,true,array['parent','book','framed','magnet'],2),
-('book','ספר בלבד','שלוש נקישות אור – ספר הביכורים','ספר השירה הראשון של בתאל כרמונה. שירים על אהבה, משפחה, חסד וקוד – שלוש נקישות עדינות על דלת הלב.',array['ספר השירה "שלוש נקישות אור"'],75,50,false,array['book','grandma','parent'],3);
+('book','ספר בלבד','שלוש נקישות אור – ספר הביכורים','ספר השירה הראשון של בתאל כרמונה. שירים על אהבה, משפחה וחסד – שלוש נקישות עדינות על דלת הלב.',array['ספר השירה "שלוש נקישות אור"'],75,50,false,array['book','grandma','parent'],3);
 
 create table public.orders (
   id uuid primary key default gen_random_uuid(), created_at timestamptz not null default now(),

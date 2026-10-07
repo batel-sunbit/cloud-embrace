@@ -15,6 +15,7 @@ export type OrderRecord = {
   orderNumber: string;
   createdAt: string;
   customerName: string;
+  email: string;
   phone: string;
   address: string;
   notes: string;
@@ -28,8 +29,8 @@ export type OrderRecord = {
 const STORAGE_KEY = "three-knocks-orders";
 
 export const PAYMENT_BUSINESS_NUMBERS = {
-  bit: "050-1234567",
-  paybox: "+972-50-1234567",
+  bit: "0523972662",
+  paybox: "0523972662",
 } as const;
 
 export function getStoredOrders(): OrderRecord[] {
