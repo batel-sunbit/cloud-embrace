@@ -22,7 +22,7 @@ const podcasts = [
     title: "אמא בתאל מספרת",
     description: "פודקאסט סיפורי ילדים עם סיפורים מקוריים, שירים ודברים טובים לליל וקרא לילדים.",
     platforms: [
-      { name: "Spotify", url: "https://open.spotify.com", platform: "spotify" },
+      { name: "Spotify", url: "https://open.spotify.com/show/033GWXeMQDPB5Zr0qFIWQ0", platform: "spotify" },
       { name: "Apple Podcasts", url: "https://podcasts.apple.com", platform: "apple" },
       { name: "Google Podcasts", url: "https://podcasts.google.com", platform: "google" },
     ],
@@ -77,19 +77,37 @@ function Podcasts() {
             </div>
           </div>
         ))}
-      </section>
 
-      <section className="mt-16 rounded-2xl border border-border/50 bg-secondary/30 p-8 text-center">
-        <h2 className="font-serif text-2xl text-primary">גם המוזיקה שלי בספוטיפיי</h2>
-        <p className="mt-3 text-muted-foreground">
-          אתם מוזמנים להאזין למוזיקה המקורית שלי בספוטיפיי. חיפשו את השם שלי ותוכלו למצוא את המלודיות השקטות.
-        </p>
-        <div className="mt-6">
-          <Button asChild>
-            <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer">
-              האזן בספוטיפיי
-            </a>
-          </Button>
+        <div className="rounded-2xl border border-border bg-card p-8">
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <Music className="h-8 w-8 flex-shrink-0 text-primary/60" />
+              <div>
+                <h2 className="font-serif text-2xl text-primary">גם המוזיקה שלי בספוטיפיי</h2>
+                <p className="mt-2 text-muted-foreground">אתם מוזמנים להאזין למוזיקה המקורית שלי בספוטיפיי. חיפשו את השם שלי ותוכלו למצוא את המלודיות השקטות.</p>
+              </div>
+            </div>
+
+            <div className="space-y-3 border-t border-border/40 pt-6">
+              <p className="text-sm font-semibold text-muted-foreground">האזן בספוטיפיי:</p>
+              <div className="flex flex-wrap gap-3">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="gap-2"
+                >
+                  <a
+                    href="https://open.spotify.com/artist/1ykkxoZJpDAVyBhUHdFTiJ"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Spotify
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
