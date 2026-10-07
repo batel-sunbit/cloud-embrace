@@ -17,18 +17,6 @@ export const Route = createFileRoute("/podcasts")({
   component: Podcasts,
 });
 
-const podcasts = [
-  {
-    title: "אמא בתאל מספרת",
-    description: "פודקאסט סיפורי ילדים עם סיפורים מקוריים, שירים ודברים טובים לליל וקרא לילדים.",
-    platforms: [
-      { name: "Spotify", url: "https://open.spotify.com/show/033GWXeMQDPB5Zr0qFIWQ0", platform: "spotify" },
-      { name: "Apple Podcasts", url: "https://podcasts.apple.com", platform: "apple" },
-      { name: "Google Podcasts", url: "https://podcasts.google.com", platform: "google" },
-    ],
-  },
-];
-
 function Podcasts() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-16">
@@ -36,78 +24,55 @@ function Podcasts() {
         <Branch className="mx-auto h-10 w-48 text-primary/60" />
         <h1 className="font-serif text-5xl text-primary">הפודקאסטים שלי</h1>
         <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          האזינו לסיפורים, לשירים ולרגעים טובים בנפח קטן.
+          האזינו לסיפורים, לשירים ולרגעים טובים.
         </p>
       </section>
 
-      <section className="mt-16 space-y-12">
-        {podcasts.map((podcast) => (
-          <div key={podcast.title} className="rounded-2xl border border-border bg-card p-8">
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <Music className="h-8 w-8 flex-shrink-0 text-primary/60" />
-                <div>
-                  <h2 className="font-serif text-2xl text-primary">{podcast.title}</h2>
-                  <p className="mt-2 text-muted-foreground">{podcast.description}</p>
-                </div>
-              </div>
-
-              <div className="space-y-3 border-t border-border/40 pt-6">
-                <p className="text-sm font-semibold text-muted-foreground">האזינו בפלטפורמה המועדפת עליכם:</p>
-                <div className="flex flex-wrap gap-3">
-                  {podcast.platforms.map((platform) => (
-                    <Button
-                      key={platform.name}
-                      asChild
-                      variant="outline"
-                      className="gap-2"
-                    >
-                      <a
-                        href={platform.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {platform.name}
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
-                    </Button>
-                  ))}
-                </div>
-              </div>
+      <section className="mt-16 grid gap-6 md:grid-cols-2">
+        {/* אמא בתאל מספרת Podcast */}
+        <div className="rounded-2xl border border-border bg-card p-8 space-y-6 flex flex-col">
+          <div className="flex items-start gap-4">
+            <Music className="h-8 w-8 flex-shrink-0 text-primary/60 mt-1" />
+            <div>
+              <h2 className="font-serif text-2xl text-primary">אמא בתאל מספרת</h2>
+              <p className="mt-2 text-muted-foreground text-sm">פודקאסט סיפורי ילדים עם סיפורים מקוריים, שירים ודברים טובים לליל וקרא לילדים.</p>
             </div>
           </div>
-        ))}
 
-        <div className="rounded-2xl border border-border bg-card p-8">
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <Music className="h-8 w-8 flex-shrink-0 text-primary/60" />
-              <div>
-                <h2 className="font-serif text-2xl text-primary">גם המוזיקה שלי בספוטיפיי</h2>
-                <p className="mt-2 text-muted-foreground">אתם מוזמנים להאזין למוזיקה המקורית שלי בספוטיפיי. חיפשו את השם שלי ותוכלו למצוא את המלודיות השקטות.</p>
-              </div>
-            </div>
+          <Button asChild className="w-full mt-auto">
+            <a
+              href="https://open.spotify.com/show/033GWXeMQDPB5Zr0qFIWQ0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gap-2"
+            >
+              <span>האזן בספוטיפיי</span>
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </Button>
+        </div>
 
-            <div className="space-y-3 border-t border-border/40 pt-6">
-              <p className="text-sm font-semibold text-muted-foreground">האזן בספוטיפיי:</p>
-              <div className="flex flex-wrap gap-3">
-                <Button
-                  asChild
-                  variant="outline"
-                  className="gap-2"
-                >
-                  <a
-                    href="https://open.spotify.com/artist/1ykkxoZJpDAVyBhUHdFTiJ"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Spotify
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                </Button>
-              </div>
+        {/* גם המוזיקה שלי בספוטיפיי */}
+        <div className="rounded-2xl border border-border bg-card p-8 space-y-6 flex flex-col">
+          <div className="flex items-start gap-4">
+            <Music className="h-8 w-8 flex-shrink-0 text-primary/60 mt-1" />
+            <div>
+              <h2 className="font-serif text-2xl text-primary">המוזיקה שלי</h2>
+              <p className="mt-2 text-muted-foreground text-sm">אתם מוזמנים להאזין למוזיקה המקורית שלי בספוטיפיי. חיפשו את השם שלי ותוכלו למצוא את המלודיות השקטות.</p>
             </div>
           </div>
+
+          <Button asChild className="w-full mt-auto">
+            <a
+              href="https://open.spotify.com/artist/1ykkxoZJpDAVyBhUHdFTiJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gap-2"
+            >
+              <span>האזן בספוטיפיי</span>
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </Button>
         </div>
       </section>
     </div>
