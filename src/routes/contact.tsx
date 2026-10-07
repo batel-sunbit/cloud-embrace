@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Branch } from "@/components/Branch";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, Music, ExternalLink } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "נשארים בקשר · שלוש נקישות אור" },
-      { name: "description", content: "יצרו קשר עם בתאל כרמונה - דוא״ל, טלפון וערוץ ספוטיפיי." },
+      { name: "description", content: "יצרו קשר עם בתאל כרמונה - דוא״ל או וואטסאפ." },
       { property: "og:title", content: "נשארים בקשר" },
       { property: "og:description", content: "יצרו קשר עם בתאל כרמונה." },
       { property: "og:type", content: "website" },
@@ -22,26 +22,17 @@ const contactMethods = [
     title: "דוא״ל",
     icon: Mail,
     description: "שלחו הודעה ישירה",
-    value: "contact@example.com",
-    href: "mailto:contact@example.com",
+    value: "carmonabatel@gmail.com",
+    href: "mailto:carmonabatel@gmail.com",
     action: "שלח דוא״ל",
   },
   {
-    title: "טלפון",
-    icon: Phone,
-    description: "התקשרו ישירות",
-    value: "+972-XX-XXXX-XXX",
-    href: "tel:+972",
-    action: "התקשר",
-    placeholder: true,
-  },
-  {
-    title: "ספוטיפיי",
-    icon: Music,
-    description: "עקבו אחרי הפרופיל שלי",
-    value: "בתאל כרמונה",
-    href: "https://open.spotify.com/artist/",
-    action: "בקרו בפרופיל",
+    title: "WhatsApp",
+    icon: MessageCircle,
+    description: "שלחו הודעה בוואטסאפ",
+    value: "0523972662",
+    href: "https://wa.me/972523972662",
+    action: "שלח בוואטסאפ",
     target: "_blank",
   },
 ];
@@ -57,7 +48,7 @@ function Contact() {
         </p>
       </section>
 
-      <section className="mt-16 grid gap-6 md:grid-cols-3">
+      <section className="mt-16 grid gap-6 md:grid-cols-2">
         {contactMethods.map((method) => {
           const Icon = method.icon;
           return (
@@ -73,23 +64,19 @@ function Contact() {
               <p className="text-sm text-muted-foreground">{method.description}</p>
 
               <div className="rounded-lg bg-secondary/40 p-3 text-sm">
-                {method.placeholder ? (
-                  <p className="text-muted-foreground italic">{method.value}</p>
-                ) : (
-                  <a
-                    href={method.href}
-                    className="break-all text-primary hover:underline"
-                    target={method.target}
-                  >
-                    {method.value}
-                  </a>
-                )}
+                <a
+                  href={method.href}
+                  className="break-all text-primary hover:underline"
+                  target={method.target}
+                  rel={method.target === "_blank" ? "noopener noreferrer" : undefined}
+                >
+                  {method.value}
+                </a>
               </div>
 
               <Button
                 asChild
                 className="w-full"
-                disabled={method.placeholder}
               >
                 <a
                   href={method.href}
@@ -102,16 +89,6 @@ function Contact() {
             </div>
           );
         })}
-      </section>
-
-      <section className="mt-16 rounded-2xl border border-border/50 bg-secondary/30 p-8 space-y-4 text-center">
-        <h2 className="font-serif text-2xl text-primary">תודה שנשארתם בקשר</h2>
-        <p className="text-muted-foreground">
-          כל הודעה, שאלה או משוב חשובים לי. אודה לכם על התעניינות בעבודה שלי ובסיפורים שלי.
-        </p>
-        <p className="text-muted-foreground text-sm">
-          🤍
-        </p>
       </section>
     </div>
   );

@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { productsQuery, img, productImageKeys, MOCKUP_NOTICE } from "@/lib/shop";
 import { Branch } from "@/components/Branch";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import bookAsset from "@/assets/book-cover.jpeg.asset.json";
 
 export const Route = createFileRoute("/")(
@@ -10,7 +9,7 @@ export const Route = createFileRoute("/")(
     head: () => ({
       meta: [
         { title: "שלוש נקישות אור · ספר השירה של בתאל כרמונה" },
-        { name: "description", content: "ספר הביכורים של בתאל כרמונה ומארזי שירה לסבתא ולהורה – במחירי השקה." },
+        { name: "description", content: "ספר הביכורים של בתאל כרמונה ומארזי שירה לסבא/סבתא ולהורה – במחירי השקה." },
         { property: "og:title", content: "שלוש נקישות אור · בתאל כרמונה" },
         { property: "og:description", content: "ספר שירה ומארזי מתנה עדינים, במחירי השקה." },
         { property: "og:type", content: "website" },
@@ -33,7 +32,7 @@ function Home() {
           <Branch className="h-10 w-40 text-primary/60" />
           <p className="text-sm tracking-[0.3em] text-muted-foreground">ספר ביכורים · בתאל כרמונה</p>
           <h1 className="font-serif text-5xl leading-tight text-primary md:text-6xl">שלוש נקישות אור</h1>
-          <p className="max-w-md text-lg leading-relaxed text-muted-foreground">
+          <p className="max-w-md text-lg leading-relaxed font-serif text-muted-foreground">
             שירים על אהבה, על משפחה, על חסד שקט שמסתתר בין שורות קוד. לפעמים צריך רק שלוש נקישות עדינות כדי שהלב ייפתח.
           </p>
           <div className="flex gap-3">
@@ -75,11 +74,6 @@ function Home() {
           <h2 className="font-serif text-3xl text-primary">מתנות של מילים</h2>
           <p className="mt-2 text-muted-foreground">מחירי השקה לזמן מוגבל</p>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">{MOCKUP_NOTICE}</p>
-          <Alert className="mt-6">
-            <AlertDescription className="text-sm text-muted-foreground">
-              תמונות המארזים להמחשה בלבד. צבע הסימנייה והמסגרת עשויים להשתנות.
-            </AlertDescription>
-          </Alert>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
           {products.map((p) => (
