@@ -14,6 +14,9 @@ export function SiteHeader() {
         <nav className="flex items-center gap-6 text-sm">
           <Link to="/" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }} activeOptions={{ exact: true }}>החנות</Link>
           <Link to="/about" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>אודות</Link>
+          <Link to="/purchase" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>רכישה באתרים</Link>
+          <Link to="/podcasts" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>הפודקאסטים שלי</Link>
+          <Link to="/contact" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>נשארים בקשר</Link>
           <button onClick={() => setOpen(true)} className="relative" aria-label="סל קניות">
             <ShoppingBag className="h-5 w-5" />
             {count > 0 && <span className="absolute -left-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">{count}</span>}

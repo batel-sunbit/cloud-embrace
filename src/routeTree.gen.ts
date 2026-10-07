@@ -14,7 +14,10 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as OrdersAdminRouteImport } from './routes/orders-admin'
+import { Route as PodcastsRouteImport } from './routes/podcasts'
+import { Route as PurchaseRouteImport } from './routes/purchase'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
 
@@ -42,9 +45,24 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OrdersAdminRoute = OrdersAdminRouteImport.update({
   id: '/orders-admin',
   path: '/orders-admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PodcastsRoute = PodcastsRouteImport.update({
+  id: '/podcasts',
+  path: '/podcasts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PurchaseRoute = PurchaseRouteImport.update({
+  id: '/purchase',
+  path: '/purchase',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -63,7 +81,10 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
+  '/contact': typeof ContactRoute
   '/orders-admin': typeof OrdersAdminRoute
+  '/podcasts': typeof PodcastsRoute
+  '/purchase': typeof PurchaseRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/product/$slug': typeof ProductSlugRoute
 }
@@ -72,7 +93,10 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
+  '/contact': typeof ContactRoute
   '/orders-admin': typeof OrdersAdminRoute
+  '/podcasts': typeof PodcastsRoute
+  '/purchase': typeof PurchaseRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/product/$slug': typeof ProductSlugRoute
 }
@@ -83,7 +107,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
+  '/contact': typeof ContactRoute
   '/orders-admin': typeof OrdersAdminRoute
+  '/podcasts': typeof PodcastsRoute
+  '/purchase': typeof PurchaseRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/product/$slug': typeof ProductSlugRoute
 }
@@ -94,7 +121,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/checkout'
+    | '/contact'
     | '/orders-admin'
+    | '/podcasts'
+    | '/purchase'
     | '/admin'
     | '/product/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -103,7 +133,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/checkout'
+    | '/contact'
     | '/orders-admin'
+    | '/podcasts'
+    | '/purchase'
     | '/admin'
     | '/product/$slug'
   id:
@@ -113,7 +146,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/checkout'
+    | '/contact'
     | '/orders-admin'
+    | '/podcasts'
+    | '/purchase'
     | '/_authenticated/admin'
     | '/product/$slug'
   fileRoutesById: FileRoutesById
@@ -124,7 +160,10 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   CheckoutRoute: typeof CheckoutRoute
+  ContactRoute: typeof ContactRoute
   OrdersAdminRoute: typeof OrdersAdminRoute
+  PodcastsRoute: typeof PodcastsRoute
+  PurchaseRoute: typeof PurchaseRoute
   ProductSlugRoute: typeof ProductSlugRoute
 }
 
@@ -165,11 +204,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/orders-admin': {
       id: '/orders-admin'
       path: '/orders-admin'
       fullPath: '/orders-admin'
       preLoaderRoute: typeof OrdersAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/podcasts': {
+      id: '/podcasts'
+      path: '/podcasts'
+      fullPath: '/podcasts'
+      preLoaderRoute: typeof PodcastsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/purchase': {
+      id: '/purchase'
+      path: '/purchase'
+      fullPath: '/purchase'
+      preLoaderRoute: typeof PurchaseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -206,7 +266,10 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   CheckoutRoute: CheckoutRoute,
+  ContactRoute: ContactRoute,
   OrdersAdminRoute: OrdersAdminRoute,
+  PodcastsRoute: PodcastsRoute,
+  PurchaseRoute: PurchaseRoute,
   ProductSlugRoute: ProductSlugRoute,
 }
 export const routeTree = rootRouteImport
