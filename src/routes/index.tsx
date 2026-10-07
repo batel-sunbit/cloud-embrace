@@ -32,21 +32,7 @@ function Home() {
           <Branch className="h-10 w-40 text-primary/60" />
           <p className="text-sm tracking-[0.3em] text-muted-foreground">ספר ביכורים · בתאל כרמונה</p>
           <h1 className="font-serif text-5xl leading-tight text-primary md:text-6xl">שלוש נקישות אור</h1>
-          <p className="max-w-md text-lg leading-relaxed font-serif text-muted-foreground">
-            שירים על אהבה, על משפחה, על חסד שקט שמסתתר בין שורות קוד. לפעמים צריך רק שלוש נקישות עדינות כדי שהלב ייפתח.
-          </p>
-          <div className="flex gap-3">
-            <a href="#shop" className="rounded-full bg-primary px-6 py-3 text-primary-foreground shadow-[var(--shadow-soft)] transition hover:opacity-90">למארזים ולספר</a>
-            <Link to="/about" className="rounded-full border border-primary/30 px-6 py-3 text-primary transition hover:bg-secondary">לקרוא שירים</Link>
-          </div>
-        </div>
-        <img src={bookAsset.url} alt="הספר שלוש נקישות אור מאת בתאל כרמונה" width={768} height={964} className="mx-auto max-h-[560px] w-full rounded-3xl object-contain shadow-[var(--shadow-soft)]" />
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 py-12">
-        <div className="mb-12 rounded-2xl border border-border/50 bg-secondary/30 p-8 text-center">
-          <h2 className="font-serif text-3xl text-primary">על הספר</h2>
-          <div className="mt-6 space-y-4 text-right leading-relaxed text-muted-foreground">
+          <div className="max-w-md space-y-4 text-lg leading-relaxed font-serif text-muted-foreground">
             <p>
               "שלוש נקישות אור".
             </p>
@@ -62,11 +48,13 @@ function Home() {
             <p>
               מזמינה אתכם ללכת איתי אל תוך האור הזה.
             </p>
-            <p className="font-serif text-lg text-primary">
-              לב פתוח על המדפים. 🤍
-            </p>
+          </div>
+          <div className="flex gap-3">
+            <a href="#shop" className="rounded-full bg-primary px-6 py-3 text-primary-foreground shadow-[var(--shadow-soft)] transition hover:opacity-90">למארזים ולספר</a>
+            <Link to="/about" className="rounded-full border border-primary/30 px-6 py-3 text-primary transition hover:bg-secondary">לקרוא שירים</Link>
           </div>
         </div>
+        <img src={bookAsset.url} alt="הספר שלוש נקישות אור מאת בתאל כרמונה" width={768} height={964} className="mx-auto max-h-[560px] w-full rounded-3xl object-contain shadow-[var(--shadow-soft)]" />
       </section>
 
       <section id="shop" className="mx-auto max-w-6xl px-6 py-12">

@@ -35,7 +35,7 @@ function Podcasts() {
             <Music className="h-8 w-8 flex-shrink-0 text-primary/60 mt-1" />
             <div>
               <h2 className="font-serif text-2xl text-primary">אמא בתאל מספרת</h2>
-              <p className="mt-2 text-muted-foreground text-sm">פודקאסט סיפורי ילדים עם סיפורים מקוריים, שירים ודברים טובים לליל וקרא לילדים.</p>
+              <p className="mt-2 text-muted-foreground text-sm">פודקאסט סיפורי ילדים קסום המשלב סיפורים מקוריים, שירים ורגעים חמים של לפני השינה</p>
             </div>
           </div>
 
@@ -58,7 +58,7 @@ function Podcasts() {
             <Music className="h-8 w-8 flex-shrink-0 text-primary/60 mt-1" />
             <div>
               <h2 className="font-serif text-2xl text-primary">המוזיקה שלי</h2>
-              <p className="mt-2 text-muted-foreground text-sm">אתם מוזמנים להאזין למוזיקה המקורית שלי בספוטיפיי. חיפשו את השם שלי ותוכלו למצוא את המלודיות השקטות.</p>
+              <p className="mt-2 text-muted-foreground text-sm">אתם מוזמנים להאזין למוזיקה המקורית שלי בספוטיפיי. חפשו את השם שלי, ותוכלו לצלול אל מלודיות שקטות שיוצאות מהלב.</p>
             </div>
           </div>
 
