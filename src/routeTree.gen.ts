@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as OrdersAdminRouteImport } from './routes/orders-admin'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
 
@@ -41,6 +42,11 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrdersAdminRoute = OrdersAdminRouteImport.update({
+  id: '/orders-admin',
+  path: '/orders-admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
+  '/orders-admin': typeof OrdersAdminRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/product/$slug': typeof ProductSlugRoute
 }
@@ -65,6 +72,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
+  '/orders-admin': typeof OrdersAdminRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/product/$slug': typeof ProductSlugRoute
 }
@@ -75,15 +83,29 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
+  '/orders-admin': typeof OrdersAdminRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/product/$slug': typeof ProductSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/auth' | '/checkout' | '/admin' | '/product/$slug'
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/checkout'
+    | '/orders-admin'
+    | '/admin'
+    | '/product/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/auth' | '/checkout' | '/admin' | '/product/$slug'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/checkout'
+    | '/orders-admin'
+    | '/admin'
+    | '/product/$slug'
   id:
     | '__root__'
     | '/'
@@ -91,6 +113,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/checkout'
+    | '/orders-admin'
     | '/_authenticated/admin'
     | '/product/$slug'
   fileRoutesById: FileRoutesById
@@ -101,6 +124,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   CheckoutRoute: typeof CheckoutRoute
+  OrdersAdminRoute: typeof OrdersAdminRoute
   ProductSlugRoute: typeof ProductSlugRoute
 }
 
@@ -141,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/orders-admin': {
+      id: '/orders-admin'
+      path: '/orders-admin'
+      fullPath: '/orders-admin'
+      preLoaderRoute: typeof OrdersAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
       path: '/admin'
@@ -175,6 +206,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   CheckoutRoute: CheckoutRoute,
+  OrdersAdminRoute: OrdersAdminRoute,
   ProductSlugRoute: ProductSlugRoute,
 }
 export const routeTree = rootRouteImport
