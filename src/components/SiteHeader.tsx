@@ -62,7 +62,7 @@ export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-border/60 py-10 text-center text-sm text-muted-foreground">
       <p className="font-serif text-base text-primary">שלוש נקישות אור · בתאל כרמונה</p>
-      <p className="mt-1">משלוח בדואר רשום לכל הארץ · תשלום בביט · פייסבוק</p>
+      <p className="mt-1">משלוח בדואר רשום לכל הארץ · תשלום בביט · פייבוקס</p>
     </footer>
   );
 }
