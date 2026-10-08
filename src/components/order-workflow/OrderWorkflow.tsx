@@ -674,5 +674,5 @@ export function OrderWorkflow({ mode = "checkout" }: OrderWorkflowProps) {
     </section>
   );
 
-  return <>{isCheckout ? renderCheckout() : renderAdmin()}</>;
+  return <div>{isCheckout ? renderCheckout() : renderAdmin()}</div>;
 }

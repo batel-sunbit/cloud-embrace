@@ -9,24 +9,30 @@ export function SiteHeader() {
   const { count, open, setOpen, items, setQty, subtotal } = useCart();
   return (
     <header className="sticky top-0 z-40 border-b border-border/40 bg-background/70 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      {/* שימוש בפריסה מפורשת שמציבה את הלוגו מימין ואת הטאבים משמאל */}
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 flex-row-reverse">
+        
+        {/* הלוגו - יושב בצד ימין */}
         <Link to="/" className="font-serif text-xl tracking-wide text-primary">שלוש נקישות אור</Link>
-        <nav className="flex items-center gap-6 text-sm">
-          <Link to="/" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }} activeOptions={{ exact: true }}>החנות</Link>
-          <Link to="/about" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>אודות</Link>
-          <Link to="/purchase" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>רכישה באתרים</Link>
-          <Link to="/podcasts" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>הפודקאסטים שלי</Link>
-          <Link to="/contact" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>נשארים בקשר</Link>
-          <button onClick={() => setOpen(true)} className="relative" aria-label="סל קניות">
+
+        {/* הטאבים והעגלה - יושבים בצד שמאל */}
+        <nav className="flex items-center gap-6 text-sm flex-row-reverse">
+          <button onClick={() => setOpen(true)} className="relative order-first ml-2" aria-label="סל קניות">
             <ShoppingBag className="h-5 w-5" />
             {count > 0 && <span className="absolute -left-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">{count}</span>}
           </button>
+          <Link to="/contact" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>נשארים בקשר</Link>
+          <Link to="/podcasts" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>הפודקאסטים שלי</Link>
+          <Link to="/purchase" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>רכישה באתרים</Link>
+          <Link to="/about" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }}>אודות</Link>
+          <Link to="/" className="hover:text-primary" activeProps={{ className: "text-primary font-semibold" }} activeOptions={{ exact: true }}>החנות</Link>
         </nav>
+
       </div>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="left" className="flex w-full flex-col bg-background sm:max-w-md" dir="rtl">
-          <SheetHeader><SheetTitle className="font-serif text-2xl text-primary">הסל שלך</SheetTitle></SheetHeader>
-          <div className="flex-1 space-y-4 overflow-y-auto px-4">
+          <SheetHeader><SheetTitle className="font-serif text-2xl text-primary text-right">הסל שלך</SheetTitle></SheetHeader>
+          <div className="flex-1 space-y-4 overflow-y-auto px-4 text-right">
             {items.length === 0 && <p className="py-12 text-center text-muted-foreground">הסל עדיין ריק, כמו דף לפני שיר.</p>}
             {items.map((i) => (
               <div key={i.slug} className="flex gap-3 rounded-lg border border-border bg-card p-3">
@@ -44,7 +50,7 @@ export function SiteHeader() {
             ))}
           </div>
           {items.length > 0 && (
-            <div className="space-y-2 border-t border-border p-4 text-sm">
+            <div className="space-y-2 border-t border-border p-4 text-sm text-right">
               <div className="flex justify-between"><span>סכום ביניים</span><span>₪{subtotal}</span></div>
               <div className="flex justify-between"><span>משלוח בדואר רשום</span><span>₪{SHIPPING}</span></div>
               <div className="flex justify-between font-serif text-lg text-primary"><span>סה״כ</span><span>₪{subtotal + SHIPPING}</span></div>
@@ -60,7 +66,7 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-border/40 bg-secondary/20 py-16 text-center">
+    <footer className="mt-24 border-t border-border/40 bg-secondary/20 py-16 text-center" dir="rtl">
       <div className="mx-auto max-w-6xl px-6 space-y-8">
         <div className="space-y-2">
           <p className="font-serif text-lg text-primary">שלוש נקישות אור</p>

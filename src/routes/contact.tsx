@@ -47,7 +47,7 @@ const contactMethods = [
 
 function Contact() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-primary/5" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-primary/5">
       <div className="mx-auto max-w-4xl px-6 py-20">
         {/* Header Section */}
         <section className="space-y-6 text-center mb-20">

@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")(
 function Home() {
   const { data: products } = useSuspenseQuery(productsQuery);
   return (
-    <div dir="rtl">
+    <div>
       {/* Hero Section - Main Focus */}
       <section className="min-h-screen flex items-center justify-center px-6 py-20">
         <div className="mx-auto max-w-5xl w-full grid md:grid-cols-2 gap-16 items-center">

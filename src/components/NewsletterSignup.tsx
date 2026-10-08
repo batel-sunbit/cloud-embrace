@@ -47,7 +47,7 @@ export function NewsletterSignup({ variant = "default" }: NewsletterSignupProps)
 
   return (
     <section className={isCompact ? "mx-auto max-w-4xl px-6" : "mx-auto max-w-4xl px-6 py-20"}>
-      <div className={`rounded-[32px] border border-border/50 bg-gradient-to-br from-primary/5 via-transparent to-primary/[0.02] backdrop-blur-sm ${isCompact ? "p-8 md:p-12" : "p-12 md:p-16"} space-y-6 md:space-y-8`} dir="rtl">
+      <div className={`rounded-[32px] border border-border/50 bg-gradient-to-br from-primary/5 via-transparent to-primary/[0.02] backdrop-blur-sm ${isCompact ? "p-8 md:p-12" : "p-12 md:p-16"} space-y-6 md:space-y-8`}>
         {!isCompact && (
           <div className="mx-auto max-w-2xl space-y-3 text-center">
             <h2 className="font-serif text-4xl font-light text-primary">נשארים בקשר</h2>
@@ -60,7 +60,7 @@ export function NewsletterSignup({ variant = "default" }: NewsletterSignupProps)
         {isCompact && (
           <div className="mx-auto max-w-2xl text-center mb-4">
             <p className="text-base leading-relaxed text-muted-foreground">
-              או הירשמו לניוזלטר שלנו לקבלת עדכונים ודברים מיוחדים.
+              הירשמו לניוזלטר שלנו לקבלת עדכונים ודברים מיוחדים.
             </p>
           </div>
         )}
@@ -73,7 +73,7 @@ export function NewsletterSignup({ variant = "default" }: NewsletterSignupProps)
             required
             disabled={isSubmitting}
             className="h-12 rounded-xl border-border/50 bg-background/50 backdrop-blur placeholder:text-muted-foreground/60"
-            dir="rtl"
+           
           />
           <Input
             type="email"
